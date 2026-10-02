@@ -205,9 +205,10 @@ async def main():
 
         draw_text(screen, "ACTIVIDAD 5.3", font_title, DARK, (935, 35))
         draw_text(screen, "Animación 2D", font_sub, BLUE, (935, 78))
-        pygame.draw.line(screen, PANEL_BORDER, (930, 115), (1170, 115), 1)
+        draw_text(screen, "Amaury Jahaziel Gordillo Hernandez", font_small, GRAY, (935, 108))
+        pygame.draw.line(screen, PANEL_BORDER, (930, 132), (1170, 132), 1)
 
-        draw_text(screen, "Configuración", font_sub, DARK, (935, 140))
+        draw_text(screen, "Configuración", font_sub, DARK, (935, 145))
         config = [
             "Software: Python + Pygame",
             f"Resolución: {WIDTH} x {HEIGHT}",
