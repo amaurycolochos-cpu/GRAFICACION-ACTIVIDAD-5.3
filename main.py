@@ -206,11 +206,11 @@ async def main():
         draw_text(screen, "ACTIVIDAD 5.3", font_title, DARK, (935, 35))
         draw_text(screen, "Animación 2D", font_sub, BLUE, (935, 78))
         draw_text(screen, "Alumno:", font_small, DARK, (935, 108))
-        draw_text(screen, "Amaury Jahaziel", font_small, GRAY, (935, 128))
-        draw_text(screen, "Gordillo Hernandez", font_small, GRAY, (935, 148))
-        pygame.draw.line(screen, PANEL_BORDER, (930, 174), (1170, 174), 1)
+        draw_text(screen, "Amaury Jahaziel", font_small, GRAY, (935, 126))
+        draw_text(screen, "Gordillo Hernandez", font_small, GRAY, (935, 144))
+        pygame.draw.line(screen, PANEL_BORDER, (930, 168), (1170, 168), 1)
 
-        draw_text(screen, "Configuración", font_sub, DARK, (935, 188))
+        draw_text(screen, "Configuración", font_sub, DARK, (935, 180))
         config = [
             "Software: Python + Pygame",
             f"Resolución: {WIDTH} x {HEIGHT}",
@@ -220,13 +220,13 @@ async def main():
             f"Tiempo: {animation_time:.1f} s",
             f"Estado: {'PAUSADO' if paused else 'REPRODUCIENDO'}",
         ]
-        y = 177
+        y = 214
         for line in config:
             draw_text(screen, line, font_text, DARK, (935, y))
-            y += 29
+            y += 26
 
-        pygame.draw.line(screen, PANEL_BORDER, (930, 392), (1170, 392), 1)
-        draw_text(screen, "Elementos animados", font_sub, DARK, (935, 418))
+        pygame.draw.line(screen, PANEL_BORDER, (930, 405), (1170, 405), 1)
+        draw_text(screen, "Elementos animados", font_sub, DARK, (935, 420))
 
         items = [
             "• Auto: traslación",
@@ -235,16 +235,16 @@ async def main():
             "• Sol: pulso + giro",
             "• Carretera: efecto de movimiento",
         ]
-        y = 456
+        y = 454
         for line in items:
             draw_text(screen, line, font_text, DARK, (935, y))
-            y += 27
+            y += 23
 
-        pygame.draw.line(screen, PANEL_BORDER, (930, 600), (1170, 600), 1)
-        draw_text(screen, "Controles", font_sub, DARK, (935, 620))
-        draw_text(screen, "ESPACIO: pausa   R: reiniciar", font_small, DARK, (935, 653))
-        draw_text(screen, "+ / -: velocidad   ESC: salir", font_small, DARK, (935, 674))
-        draw_text(screen, "S: captura (escritorio)", font_small, DARK, (935, 695))
+        pygame.draw.line(screen, PANEL_BORDER, (930, 575), (1170, 575), 1)
+        draw_text(screen, "Controles", font_sub, DARK, (935, 590))
+        draw_text(screen, "ESPACIO: pausa   R: reiniciar", font_small, DARK, (935, 620))
+        draw_text(screen, "+ / -: velocidad   ESC: salir", font_small, DARK, (935, 645))
+        draw_text(screen, "S: captura (escritorio)", font_small, DARK, (935, 670))
 
         if flash_timer > 0:
             box = pygame.Rect(200, 20, 510, 45)
