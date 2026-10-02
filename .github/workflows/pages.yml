@@ -35,6 +35,48 @@ jobs:
       - name: Compilar para navegador
         run: python -m pygbag --build .
 
+      - name: Evitar alerta externa de extensiones de Chrome
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          index = Path("build/web/index.html")
+          html = index.read_text(encoding="utf-8")
+
+          guard = r"""
+          <script>
+          (() => {
+            const originalAlert = window.alert.bind(window);
+            window.alert = (message) => {
+              const text = String(message ?? "");
+              if (text.includes("Rejection occurred") && text.includes("M_ID")) {
+                console.warn("Se ignoró un error externo provocado por una extensión del navegador:", text);
+                return;
+              }
+              originalAlert(message);
+            };
+
+            window.addEventListener("unhandledrejection", (event) => {
+              const reason = event.reason;
+              const text = String(reason?.message ?? reason ?? "");
+              if (text.includes("M_ID") && text.includes("Cannot read properties of undefined")) {
+                event.preventDefault();
+                event.stopImmediatePropagation();
+                console.warn("Se ignoró un rechazo externo provocado por una extensión del navegador:", text);
+              }
+            }, true);
+          })();
+          </script>
+          """
+
+          if "</head>" in html:
+              html = html.replace("</head>", guard + "\n</head>", 1)
+          else:
+              html = guard + "\n" + html
+
+          index.write_text(html, encoding="utf-8")
+          PY
+
       - name: Configurar Pages
         uses: actions/configure-pages@v5
 
